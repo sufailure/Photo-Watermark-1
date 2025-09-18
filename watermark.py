@@ -14,7 +14,7 @@ def extract_exif_date(image_path):
                     return value.split(" ")[0].replace(":", "-")
         return None
     except Exception as e:
-        print(f"Error reading EXIF data: {e}")
+        print("Error reading EXIF data: {}".format(e))
         return None
 
 def add_watermark(image_path, text, font_size, color, position):
@@ -42,9 +42,9 @@ def add_watermark(image_path, text, font_size, color, position):
 
         output_path = os.path.join(output_dir, os.path.basename(image_path))
         image.save(output_path)
-        print(f"Watermarked image saved to {output_path}")
+        print("Watermarked image saved to {}".format(output_path))
     except Exception as e:
-        print(f"Error adding watermark: {e}")
+        print("Error adding watermark: {}".format(e))
 
 def main():
     if len(sys.argv) < 2:
@@ -66,7 +66,7 @@ def main():
                 if exif_date:
                     add_watermark(image_path, exif_date, font_size, color, position)
                 else:
-                    print(f"No EXIF date found for {file}")
+                    print("No EXIF date found for {}".format(file))
 
 if __name__ == "__main__":
     main()
